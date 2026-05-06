@@ -1,0 +1,51 @@
+-- ============================================================
+-- DATABASE AND SCHEMA CREATION SCRIPT
+-- ============================================================
+-- Purpose: This script safely creates a database and three schemas
+--          with existence checks to prevent errors.
+--
+-- What it does:
+--   1. Checks if the target database already exists
+--   2. Creates the database only if it does NOT exist
+--   3. Switches to the newly created/existing database
+--   4. Creates three schemas (each only if not already present)
+--
+-- ============================================================
+
+-- ============================================================
+-- 1: Create the database if it doesn't exist
+-- ============================================================
+IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'SQLDataWarehouseProject')
+BEGIN
+    CREATE DATABASE SQLDataWarehouseProject;
+END;
+
+-- ============================================================
+-- STEP 2: Use the database
+-- ============================================================
+USE SQLDataWarehouseProject;
+
+-- ============================================================
+-- STEP 3: Create three schemas if they don't exist
+-- ============================================================
+
+-- Schema 1: For raw staging data
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'bronze')
+    EXEC('CREATE SCHEMA bronze');
+--GO
+-- Schema 2: For core business tables (dimensions and facts)
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'silver')
+    EXEC('CREATE SCHEMA silver');
+--GO
+-- Schema 3: For reporting and aggregated data
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'gold')
+    EXEC('CREATE SCHEMA gold');
+--GO
+
+-- ============================================================
+-- VERIFICATION
+-- ============================================================
+-- SHOW DATABASES LIKE 'SQLDataWarehouseProject';
+-- SELECT schema_name FROM information_schema.schemata 
+-- WHERE schema_name IN ('bronze', 'silver', 'gold');
+-- ============================================================
