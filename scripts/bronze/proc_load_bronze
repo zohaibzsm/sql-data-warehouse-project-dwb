@@ -16,6 +16,7 @@ Usage Example:
     EXEC bronze.load_bronze;
 ===============================================================================
 */
+
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME; 
@@ -139,8 +140,4 @@ BEGIN
 	PRINT 'Error Message' + CAST (ERROR_STATE() AS NVARCHAR);
 	PRINT '=========================================='	
 	END CATCH
-END
-
-
--- For executing/testing the Stored Procedure
--- EXEC bronze.load_bronze;
+END;
