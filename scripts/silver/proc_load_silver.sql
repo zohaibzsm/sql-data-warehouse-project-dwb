@@ -239,6 +239,3 @@ BEGIN
 	PRINT '=========================================='	
 	END CATCH
 END;
-
--- For executing/testing the Stored Procedure
--- EXEC silver.load_silver;
