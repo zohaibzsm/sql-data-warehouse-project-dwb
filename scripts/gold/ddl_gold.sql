@@ -90,37 +90,3 @@ LEFT JOIN gold.dim_products pr
 ON sd.sls_prd_key = pr.product_number
 LEFT JOIN gold.dim_customers cs
 ON sd.sls_cust_id = cs.customer_id
-
-
--- Foregin Key Integrity (Dimensions)
-SELECT *
-FROM gold.fact_sales f
---LEFT JOIN gold.dim_customers c
---ON f.customer_key = f.customer_key
-LEFT JOIN gold.dim_products p
-ON f.product_key = p.product_key 
-WHERE p.product_key IS NULL
---WHERE c.customer_key IS NULL
-
-/*
--- Checking for duplicates
-SELECT prd_key, COUNT(*)
-FROM(
-SELECT 
-	prd_id,
-	cat_id,
-	prd_key,
-	prd_nm,
-	prd_cost,
-	prd_line,
-	prd_start_dt,
-	pc.cat,
-	pc.subcat,
-	pc.maintenance
-FROM silver.crm_prd_info pn
-LEFT JOIN silver.erp_px_cat_g1v2 pc
-ON pn.cat_id = pc.id
-WHERE prd_end_dt IS NULL)t -- Filtered out Historical data
-GROUP BY prd_key
-HAVING COUNT(*) > 1;
-*/
