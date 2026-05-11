@@ -1,0 +1,32 @@
+
+--Explore All objects in the Database
+SELECT *
+FROM INFORMATION_SCHEMA.TABLES;
+
+--Explore All Columns in the Database
+SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'dim_customers';
+
+-- Explore All countries our customers come from
+SELECT DISTINCT country FROM gold.dim_customers;
+
+-- Explore ALL Product Categories 'The Major Division'
+SELECT DISTINCT category, subcategory, product_name 
+FROM gold.dim_products
+ORDER BY 1, 2, 3;
+
+-- Find the date of the first and last order
+-- How many years of sales are available
+SELECT 
+	MIN(order_date) first_order_date,
+	MAX(order_date) last_order_date,
+	DATEDIFF(YEAR, MIN(order_date), MAX(order_date)) order_years
+FROM gold.fact_sales;
+
+-- Find the youngest and oldest customer
+SELECT 
+	MIN(birth_date) oldest_customer,
+	MAX(birth_date) youngest_customer,
+	DATEDIFF(YEAR, MIN(birth_date), GETDATE()) oldest_customer_age
+FROM gold.dim_customers;
