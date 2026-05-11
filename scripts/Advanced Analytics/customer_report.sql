@@ -19,7 +19,12 @@ Highlights:
 		- average monthly spend
 ============================================================================
 */
+IF OBJECT_ID('gold.report_customers', 'V') IS NOT NULL
+	DROP VIEW gold.report_customers;
+GO
+
 CREATE VIEW gold.report_customers AS
+
 With base_query AS(
 -- Base Query: Retrieves core columns from tables
 SELECT 
