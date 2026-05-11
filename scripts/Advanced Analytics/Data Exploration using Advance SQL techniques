@@ -1,0 +1,85 @@
+
+-- Analyze sales over time
+-- changes over years
+SELECT 
+	DATEPART(YEAR, order_date) AS order_year,
+	SUM(sales_amount) AS total_sales,
+	COUNT(customer_key) AS total_customers
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY DATEPART(YEAR, order_date)
+ORDER BY DATEPART(YEAR, order_date);
+
+-- changes over months
+SELECT 
+	DATEPART(MONTH, order_date) AS order_year,
+	SUM(sales_amount) AS total_sales,
+	COUNT(customer_key) AS total_customers
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY DATEPART(MONTH, order_date)
+ORDER BY DATEPART(MONTH, order_date);
+
+-- changes over years/months combined
+SELECT 
+	DATEPART(YEAR, order_date) AS order_year,
+	DATEPART(MONTH, order_date) AS order_month,
+	SUM(sales_amount) AS total_sales,
+	COUNT(customer_key) AS total_customers
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY DATEPART(YEAR, order_date), DATEPART(MONTH, order_date)
+ORDER BY DATEPART(YEAR, order_date), DATEPART(MONTH, order_date);
+
+-- using FORMAT
+SELECT 
+	FORMAT(order_date, 'MMM-yyyy') AS order_date,
+	SUM(sales_amount) AS total_sales,
+	COUNT(customer_key) AS total_customers
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY FORMAT(order_date, 'MMM-yyyy')
+ORDER BY FORMAT(order_date, 'MMM-yyyy');
+
+-- calculate the total sales per month
+-- and the running total of sales over time (months)
+-- moving average
+SELECT 
+	order_year,
+	order_month,
+	total_sales,
+	SUM(total_sales) 
+	OVER (PARTITION BY order_year ORDER BY order_year, order_month) AS running_total_sales,
+	AVG(moving_avg) 
+	OVER (PARTITION BY order_year ORDER BY order_year, order_month) AS moving_average
+FROM
+(SELECT 
+	DATEPART(YEAR, order_date) AS order_year,
+	DATEPART(MONTH, order_date) AS order_month,
+	SUM(sales_amount) AS total_sales,
+	AVG(sales_amount) AS moving_avg
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY DATEPART(YEAR, order_date), DATEPART(MONTH, order_date)
+--ORDER BY DATEPART(YEAR, order_date), DATEPART(MONTH, order_date);
+)t;
+
+-- calculate the total sales per month
+-- and the running total of sales over time (years)
+-- moving average
+SELECT 
+	order_year,
+	total_sales,
+	SUM(total_sales) 
+	OVER (ORDER BY order_year) AS running_total_sales,
+	AVG(moving_avg) 
+	OVER (ORDER BY order_year) AS moving_average
+FROM
+(SELECT 
+	DATEPART(YEAR, order_date) AS order_year,
+	SUM(sales_amount) AS total_sales,
+	AVG(sales_amount) AS moving_avg
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY DATEPART(YEAR, order_date)
+)t;
