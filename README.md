@@ -1,7 +1,15 @@
 # Data Warehouse and Analytics Project
 
-Welcome to the **Data Warehouse and Analytics Project** repository! 🚀  
-This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed as a portfolio project, it highlights industry best practices in data engineering and analytics.
+Welcome to the **Data Warehouse and Analytics Project** repository! 🚀 
+
+This repository contains 3 personal projects:
+1. **SQL DataWarehouse using SQL Server**
+2. **Exploratory Data Analysis**
+3. **Advanced Data Analytics**
+
+This repository showcases an end-to-end data engineering and analytics pipeline, built across three interconnected projects. It begins with constructing a SQL data warehouse from scratch — ingesting raw source data and transforming it through the Medallion Architecture's Bronze, Silver, and Gold layers to produce clean, analysis-ready datasets along with the data modelling. From there, an Exploratory Data Analysis (EDA) project uncovers patterns, distributions, and relationships within the data through structured statistical profiling. The series culminates in an Advanced Analytics project that builds on those findings to deliver segmentation, trend analysis, and actionable KPIs.
+
+Each project reflects industry best practices in data engineering and analytics — from schema design and data quality enforcement to insight generation. Together, they demonstrate a complete data lifecycle: raw ingestion, structured transformation, exploratory discovery, and business-driven analysis — making them a practical reference for real-world data workflows. The analytical outputs are also designed to integrate seamlessly with visualization tools such as Power BI or Tableau for further reporting.
 
 ---
 ## 🏗️ Data Architecture
