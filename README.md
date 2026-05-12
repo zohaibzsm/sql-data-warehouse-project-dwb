@@ -2,8 +2,8 @@
 
 Welcome to the **Data Warehouse and Analytics Project** repository! 🚀 
 
-This repository contains 3 personal projects:
-1. **SQL DataWarehouse using SQL Server**
+This repository contains 3 personal/guided projects:
+1. **SQL Data Warehouse using SQL Server**
 2. **Exploratory Data Analysis**
 3. **Advanced Data Analytics**
 
