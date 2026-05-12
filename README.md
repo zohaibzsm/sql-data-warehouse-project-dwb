@@ -72,7 +72,7 @@ These insights empower stakeholders with key business metrics, enabling strategi
 
 ## ☕ Stay Connected
 
-Let's stay in touch! Feel free to connect with me on the following platforms:
+Let's stay in touch! Feel free to connect with me:
 
-[![LinkedIn](https://www.linkedin.com/in/zohaib-sheraz-mughal-08b972163/)
-
+[LinkedIn](https://www.linkedin.com/in/zohaib-sheraz-mughal-08b972163/)   
+[zohaibsheraz80attherate(googlemail)dotcom](https://gmail.com/)
