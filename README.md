@@ -70,7 +70,7 @@ Develop SQL-based analytics to deliver detailed insights into:
 
 These insights empower stakeholders with key business metrics, enabling strategic decision-making.  
 
-## ☕ Stay Connected
+## Stay Connected
 
 Let's stay in touch! Feel free to connect with me:
 
